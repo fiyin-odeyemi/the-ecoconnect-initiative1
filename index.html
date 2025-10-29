@@ -3,52 +3,71 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>The EcoConnect Initiative</title>
-  <meta name="description" content="The EcoConnect Initiative – empowering underserved communities through environmental education, real-time reporting, youth leadership, and data-driven action." />
+  <title>The EcoConect Initiative</title>
+  <meta name="description" content="The EcoConect Initiative – empowering underserved communities through environmental education, real-time reporting, youth leadership, and data-driven action." />
 
-  <!-- Fonts -->
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet" />
+  <!-- Fonts: Playfair for hero/section heads, DM Sans (high legibility) for everything else -->
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=DM+Sans:wght@400;500;600&display=swap" rel="stylesheet" />
 
   <style>
     :root {
-      /* Core palette inspired by shared assets */
-      --bg-deep: #0f231c;          /* deep eco green (dashboard tone) */
-      --bg-alt: #132d24;          /* slightly lighter panel green */
-      --bg-soft: #f4efe5;         /* warm beige backdrop */
-      --text-light: #eef7ef;      /* near-white for dark sections */
-      --text-dark: #1a1f1c;       /* near-black for light sections */
-      --accent-leaf: #5fbf6a;     /* soft leaf green accents */
-      --accent-earth: #9a6b3a;    /* earthy brown/gold (from app tiles) */
-      --accent-clay: #a95c42;     /* terracotta / rust (from Reporting tile) */
+      /* Refined palette: brighter base, same earthy accents */
+      --bg-deep: #1a2f28;           /* softened deep green background */
+      --bg-alt: #203a30;            /* card/alt band */
+      --bg-soft: #f4efe5;           /* warm neutral */
+
+      --panel-glass-dark: rgba(32,58,48,.6);  /* cards on dark */
+      --panel-border-dark: rgba(255,255,255,.12);
+      --panel-highlight: rgba(255,255,255,.08);
+
+      --panel-light: #ffffff;       /* cards on light */
+      --panel-light-border: rgba(0,0,0,.05);
+      --panel-light-shadow: 0 30px 60px rgba(0,0,0,.12);
+
+      --text-light: #eef7ef;        /* text on dark */
+      --text-dim: rgba(255,255,255,.75);
+      --text-dark: #1a1f1c;         /* text on light */
+      --text-dark-dim: rgba(26,31,28,.75);
+
+      --accent-leaf: #5fbf6a;       /* soft leaf green */
+      --accent-earth: #9a6b3a;      /* soil brown */
+      --accent-clay: #a95c42;       /* terracotta */
+
       --radius-xl: 1.5rem;
       --radius-lg: 1rem;
       --radius-md: .75rem;
-      --shadow-card: 0 24px 48px rgba(0,0,0,.6);
-      --shadow-soft: 0 20px 40px rgba(0,0,0,.18);
+
+      --shadow-card-dark: 0 24px 48px rgba(0,0,0,.6);
+      --shadow-soft-dark: 0 20px 40px rgba(0,0,0,.25);
+
       --max-width: 1300px;
     }
 
-    /* Global reset-ish */
     * {
       box-sizing: border-box;
       -webkit-font-smoothing: antialiased;
     }
+
     body {
       margin: 0;
       background-color: var(--bg-deep);
+      background-image:
+        radial-gradient(circle at 20% 20%, rgba(95,191,106,.12) 0%, rgba(0,0,0,0) 60%),
+        radial-gradient(circle at 80% 0%, rgba(169,92,66,.1) 0%, rgba(0,0,0,0) 60%),
+        radial-gradient(circle at 40% 100%, rgba(255,255,255,.04) 0%, rgba(0,0,0,0) 60%);
       color: var(--text-light);
-      font-family: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', sans-serif;
+      font-family: 'DM Sans', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', sans-serif;
       line-height: 1.5;
       scroll-behavior: smooth;
     }
 
     h1,h2,h3,h4,h5,h6 {
       font-family: 'Playfair Display', Georgia, 'Times New Roman', serif;
+      font-weight: 600;
       line-height: 1.2;
+      letter-spacing: -0.03em;
       margin: 0 0 .5em;
       color: inherit;
-      font-weight: 600;
-      letter-spacing: -0.03em;
     }
 
     p {
@@ -70,7 +89,7 @@
       text-decoration: none;
     }
 
-    /* Layout helpers */
+    /* layout helpers */
     .wrapper {
       width: 100%;
       max-width: var(--max-width);
@@ -78,23 +97,29 @@
       padding: 4rem 1.5rem;
     }
 
+    /* lighter section bands */
     .section-dark {
-      background: radial-gradient(circle at 20% 20%, rgba(95,191,106,.08) 0%, rgba(0,0,0,0) 60%),
-                  radial-gradient(circle at 80% 10%, rgba(169,92,66,.12) 0%, rgba(0,0,0,0) 60%),
-                  var(--bg-deep);
+      background:
+        radial-gradient(circle at 20% 20%, rgba(95,191,106,.15) 0%, rgba(0,0,0,0) 60%),
+        radial-gradient(circle at 80% 10%, rgba(169,92,66,.14) 0%, rgba(0,0,0,0) 60%),
+        rgba(26,47,40,.6);
+      backdrop-filter: blur(20px);
       color: var(--text-light);
     }
 
     .section-alt {
-      background: radial-gradient(circle at 10% 10%, rgba(95,191,106,.12) 0%, rgba(0,0,0,0) 60%),
-                  var(--bg-alt);
+      background:
+        radial-gradient(circle at 10% 10%, rgba(95,191,106,.18) 0%, rgba(0,0,0,0) 60%),
+        rgba(32,58,48,.6);
+      backdrop-filter: blur(16px);
       color: var(--text-light);
     }
 
     .section-soft {
-      background: radial-gradient(circle at 10% 10%, rgba(95,191,106,.15) 0%, rgba(255,255,255,0) 60%),
-                  radial-gradient(circle at 90% 10%, rgba(169,92,66,.07) 0%, rgba(255,255,255,0) 60%),
-                  var(--bg-soft);
+      background:
+        radial-gradient(circle at 10% 10%, rgba(95,191,106,.18) 0%, rgba(255,255,255,0) 60%),
+        radial-gradient(circle at 90% 10%, rgba(169,92,66,.07) 0%, rgba(255,255,255,0) 60%),
+        var(--bg-soft);
       color: var(--text-dark);
     }
 
@@ -103,9 +128,10 @@
       position: sticky;
       top: 0;
       z-index: 999;
-      background: linear-gradient(to right, rgba(15,35,28,.9), rgba(19,45,36,.9));
+      background: rgba(32,58,48,.8);
       backdrop-filter: blur(12px);
-      border-bottom: 1px solid rgba(255,255,255,.07);
+      border-bottom: 1px solid rgba(255,255,255,.12);
+      box-shadow: 0 20px 40px rgba(0,0,0,.4);
     }
 
     .nav-shell {
@@ -133,7 +159,7 @@
       color: var(--text-light);
     }
     .brand .tag {
-      color: rgba(255,255,255,.6);
+      color: rgba(255,255,255,.7);
       font-size: .75rem;
       font-weight: 400;
     }
@@ -148,7 +174,7 @@
 
     nav a {
       color: var(--text-light);
-      opacity: .8;
+      opacity: .9;
       position: relative;
     }
     nav a:hover {
@@ -176,14 +202,14 @@
       font-weight: 600;
       padding: .6rem .9rem;
       border-radius: var(--radius-md);
-      box-shadow: 0 16px 32px rgba(95,191,106,.25);
+      box-shadow: 0 16px 32px rgba(95,191,106,.3);
     }
 
-    /* mobile menu */
+    /* burger menu (mobile) */
     .burger {
       display: none;
-      background: rgba(255,255,255,.06);
-      border: 1px solid rgba(255,255,255,.12);
+      background: rgba(255,255,255,.08);
+      border: 1px solid rgba(255,255,255,.16);
       border-radius: var(--radius-md);
       padding: .6rem .7rem;
       line-height: 0;
@@ -205,11 +231,11 @@
         background: var(--bg-alt);
         padding: 1rem 1.25rem;
         border-radius: var(--radius-lg);
-        box-shadow: var(--shadow-card);
-        border: 1px solid rgba(255,255,255,.07);
+        box-shadow: var(--shadow-card-dark);
+        border: 1px solid rgba(255,255,255,.12);
         flex-direction: column;
         align-items: flex-start;
-        min-width: 180px;
+        min-width: 190px;
         opacity: 0;
         pointer-events: none;
         transform: translateY(-10px) scale(.98);
@@ -236,11 +262,8 @@
       gap: 3rem;
       align-items: center;
     }
-
     @media(max-width:900px){
-      .hero {
-        grid-template-columns: 1fr;
-      }
+      .hero { grid-template-columns: 1fr; }
     }
 
     .eyebrow {
@@ -250,7 +273,7 @@
       font-size: .75rem;
       font-weight: 500;
       color: var(--accent-leaf);
-      background: rgba(95,191,106,.08);
+      background: rgba(95,191,106,.12);
       border: 1px solid rgba(95,191,106,.4);
       padding: .4rem .6rem;
       border-radius: 999px;
@@ -268,7 +291,7 @@
     }
 
     .hero-copy {
-      color: rgba(255,255,255,.8);
+      color: var(--text-dim);
       font-size: 1rem;
       max-width: 50ch;
     }
@@ -288,20 +311,20 @@
       padding: .8rem 1rem;
       border-radius: var(--radius-md);
       border: 0;
-      box-shadow: 0 24px 48px rgba(95,191,106,.28);
+      box-shadow: 0 24px 48px rgba(95,191,106,.3);
       cursor: pointer;
     }
 
     .btn-secondary {
-      background: rgba(255,255,255,.06);
-      border: 1px solid rgba(255,255,255,.16);
+      background: rgba(255,255,255,.08);
+      border: 1px solid rgba(255,255,255,.18);
       color: var(--text-light);
       font-weight: 500;
       font-size: .9rem;
       padding: .8rem 1rem;
       border-radius: var(--radius-md);
       cursor: pointer;
-      box-shadow: var(--shadow-soft);
+      box-shadow: var(--shadow-soft-dark);
     }
 
     .hero-visual {
@@ -309,11 +332,11 @@
       gap: 1rem;
     }
     .hero-card {
-      background: radial-gradient(circle at 10% 10%, rgba(255,255,255,.07) 0%, rgba(0,0,0,0) 70%),
-                  rgba(19,45,36,.6);
-      border: 1px solid rgba(255,255,255,.07);
+      background: radial-gradient(circle at 10% 10%, rgba(255,255,255,.08) 0%, rgba(0,0,0,0) 70%),
+                  var(--panel-glass-dark);
+      border: 1px solid var(--panel-border-dark);
       border-radius: var(--radius-xl);
-      box-shadow: var(--shadow-card);
+      box-shadow: var(--shadow-card-dark);
       padding: 1.25rem 1.25rem 1rem;
       display: grid;
       grid-template-columns: 1fr;
@@ -322,7 +345,7 @@
     }
     .hero-card img.app-mock {
       border-radius: 1.25rem;
-      border: 1px solid rgba(255,255,255,.1);
+      border: 1px solid rgba(255,255,255,.18);
       background: #0d201a;
       max-width: 260px;
       width: 100%;
@@ -336,37 +359,34 @@
       margin-bottom: .25rem;
     }
     .hero-card p {
-      color: rgba(255,255,255,.7);
+      color: var(--text-dim);
       font-size: .9rem;
       margin-bottom: 0;
     }
 
-    /* ===== PROBLEM / ABOUT ===== */
+    /* ===== 2-COL (ABOUT / PROBLEM) ===== */
     .two-col {
       display: grid;
       grid-template-columns: minmax(0,1fr) minmax(0,1fr);
       gap: 3rem;
     }
-    @media(max-width:900px){
-      .two-col {
-        grid-template-columns: 1fr;
-      }
-    }
+    @media(max-width:900px){.two-col{grid-template-columns:1fr;}}
 
     .card-panel {
-      background: rgba(255,255,255,.06);
-      border: 1px solid rgba(255,255,255,.12);
+      background: radial-gradient(circle at 10% 10%, var(--panel-highlight) 0%, rgba(0,0,0,0) 70%), var(--panel-glass-dark);
+      border: 1px solid var(--panel-border-dark);
       border-radius: var(--radius-lg);
-      box-shadow: var(--shadow-soft);
+      box-shadow: var(--shadow-soft-dark);
       padding:2rem;
+      color: var(--text-light);
     }
 
     .light-card-panel {
-      background: #ffffff;
+      background: var(--panel-light);
       color: var(--text-dark);
       border-radius: var(--radius-lg);
-      box-shadow: 0 30px 60px rgba(0,0,0,.12);
-      border: 1px solid rgba(0,0,0,.05);
+      box-shadow: var(--panel-light-shadow);
+      border: 1px solid var(--panel-light-border);
       padding:2rem;
     }
 
@@ -407,7 +427,7 @@
       transform:rotate(45deg);
     }
 
-    /* ===== FEATURE GRID (App + Dashboard) ===== */
+    /* ===== FEATURE GRID ===== */
     .feature-grid {
       display:grid;
       grid-template-columns:repeat(auto-fit,minmax(min(280px,100%),1fr));
@@ -416,14 +436,14 @@
     }
 
     .feature-tile {
-      background:radial-gradient(circle at 10% 10%,rgba(255,255,255,.09)0%,rgba(0,0,0,0)70%),
-                rgba(19,45,36,.55);
-      border:1px solid rgba(255,255,255,.09);
+      background:radial-gradient(circle at 10% 10%,rgba(255,255,255,.09)0%,rgba(0,0,0,0)70%),var(--panel-glass-dark);
+      border:1px solid var(--panel-border-dark);
       border-radius:var(--radius-lg);
-      box-shadow:var(--shadow-soft);
+      box-shadow:var(--shadow-soft-dark);
       padding:1.25rem 1.25rem 1rem;
       display:grid;
       gap:.5rem;
+      color:var(--text-light);
     }
     .feature-head {
       font-weight:600;
@@ -431,13 +451,13 @@
       color:var(--text-light);
     }
     .feature-desc {
-      color:rgba(255,255,255,.7);
+      color:var(--text-dim);
       font-size:.9rem;
       line-height:1.4;
     }
     .mini-thumb {
       border-radius:var(--radius-md);
-      border:1px solid rgba(255,255,255,.12);
+      border:1px solid rgba(255,255,255,.18);
       background:#0d201a;
       box-shadow:0 24px 48px rgba(0,0,0,.8);
       aspect-ratio:16/10;
@@ -453,26 +473,28 @@
       margin-top:2rem;
     }
     .benefit-card {
-      background:#ffffff;
+      background:var(--panel-light);
       border-radius:var(--radius-lg);
-      box-shadow:0 30px 60px rgba(0,0,0,.14);
-      border:1px solid rgba(0,0,0,.05);
+      box-shadow:var(--panel-light-shadow);
+      border:1px solid var(--panel-light-border);
       padding:1.5rem;
+      color:var(--text-dark);
     }
     .benefit-card h4 {
       color:var(--text-dark);
       font-size:1rem;
       margin-bottom:.5rem;
       font-weight:600;
+      font-family:'DM Sans',system-ui,sans-serif;
     }
     .benefit-card p {
-      color:rgba(26,31,28,.8);
+      color:var(--text-dark-dim);
       font-size:.9rem;
       line-height:1.4;
       margin:0;
     }
 
-    /* ===== PROJECTS / GALLERY ===== */
+    /* ===== PROJECTS / GALLERY CARDS ===== */
     .projects-grid {
       display:grid;
       grid-template-columns:repeat(auto-fit,minmax(min(320px,100%),1fr));
@@ -481,13 +503,15 @@
     }
 
     .project-card {
-      background:rgba(255,255,255,.06);
-      border:1px solid rgba(255,255,255,.12);
+      background:var(--panel-glass-dark);
+      background-image:radial-gradient(circle at 10% 10%,rgba(255,255,255,.08)0%,rgba(0,0,0,0)70%);
+      border:1px solid var(--panel-border-dark);
       border-radius:var(--radius-lg);
-      box-shadow:var(--shadow-soft);
+      box-shadow:var(--shadow-soft-dark);
       overflow:hidden;
       display:flex;
       flex-direction:column;
+      color:var(--text-light);
     }
     .project-card .img-wrap {
       position:relative;
@@ -509,10 +533,11 @@
       font-weight:600;
       color:var(--text-light);
       margin-bottom:.5rem;
+      font-family:'DM Sans',system-ui,sans-serif;
     }
     .project-card p{
       font-size:.9rem;
-      color:rgba(255,255,255,.7);
+      color:var(--text-dim);
       margin:0;
     }
 
@@ -524,11 +549,32 @@
       margin-top:2rem;
     }
     .team-card {
-      background:#ffffff;
+      background:var(--panel-light);
       border-radius:var(--radius-lg);
-      box-shadow:0 30px 60px rgba(0,0,0,.14);
-      border:1px solid rgba(0,0,0,.05);
+      box-shadow:var(--panel-light-shadow);
+      border:1px solid var(--panel-light-border);
       padding:1.5rem;
+      color:var(--text-dark);
+      text-align:center;
+      display:flex;
+      flex-direction:column;
+      align-items:center;
+    }
+    .team-photo{
+      width:100px;
+      height:100px;
+      border-radius:1rem;
+      object-fit:cover;
+      border:3px solid var(--bg-soft);
+      box-shadow:0 20px 40px rgba(0,0,0,.25);
+      margin-bottom:1rem;
+      background-color:#ccc;
+    }
+    .team-name {
+      font-family:'Playfair Display',serif;
+      font-size:1.05rem;
+      font-weight:600;
+      margin-bottom:.25rem;
       color:var(--text-dark);
     }
     .team-role {
@@ -536,29 +582,25 @@
       font-weight:600;
       color:var(--accent-clay);
       letter-spacing:-0.02em;
-      margin-bottom:.5rem;
-    }
-    .team-name {
-      font-family:'Playfair Display', Georgia, serif;
-      font-size:1.05rem;
-      font-weight:600;
-      margin-bottom:.5rem;
-      color:var(--text-dark);
+      margin-bottom:.75rem;
+      font-family:'DM Sans',system-ui,sans-serif;
     }
     .team-desc{
       font-size:.9rem;
-      color:rgba(26,31,28,.8);
+      color:var(--text-dark-dim);
       margin:0;
       line-height:1.4;
+      text-align:center;
     }
 
     /* ===== BLOG TEASER ===== */
     .blog-box {
-      background:linear-gradient(135deg,rgba(95,191,106,.1),rgba(169,92,66,.08));
+      background:linear-gradient(135deg,rgba(95,191,106,.12),rgba(169,92,66,.08));
       border:1px solid rgba(0,0,0,.08);
       border-radius:var(--radius-lg);
-      box-shadow:0 30px 60px rgba(0,0,0,.12);
+      box-shadow:var(--panel-light-shadow);
       padding:2rem;
+      color:var(--text-dark);
     }
     .blog-eyebrow{
       font-size:.7rem;
@@ -567,20 +609,22 @@
       color:var(--accent-clay);
       letter-spacing:.05em;
       margin-bottom:.5rem;
+      font-family:'DM Sans',system-ui,sans-serif;
     }
     .blog-box h3{
       color:var(--text-dark);
       font-size:1.2rem;
       margin-bottom:.5rem;
       font-weight:600;
+      font-family:'DM Sans',system-ui,sans-serif;
     }
     .blog-box p{
-      color:rgba(26,31,28,.8);
+      color:var(--text-dark-dim);
       margin:0 0 1rem;
       font-size:.9rem;
     }
 
-    /* ===== CALL TO ACTION / CONTACT ===== */
+    /* ===== CTA / CONTACT ===== */
     .cta-area {
       display:grid;
       gap:2rem;
@@ -589,36 +633,39 @@
     }
 
     .cta-card {
-      background:radial-gradient(circle at 10% 10%,rgba(255,255,255,.07)0%,rgba(0,0,0,0)70%),
-                rgba(19,45,36,.6);
-      border:1px solid rgba(255,255,255,.07);
+      background:radial-gradient(circle at 10% 10%,rgba(255,255,255,.08)0%,rgba(0,0,0,0)70%),var(--panel-glass-dark);
+      border:1px solid var(--panel-border-dark);
       border-radius:var(--radius-lg);
       padding:2rem;
-      box-shadow:var(--shadow-card);
+      box-shadow:var(--shadow-card-dark);
+      color:var(--text-light);
     }
     .cta-card h3{
       font-size:1.1rem;
       font-weight:600;
       color:var(--text-light);
       margin-bottom:.75rem;
+      font-family:'DM Sans',system-ui,sans-serif;
     }
     .cta-card p{
-      color:rgba(255,255,255,.75);
+      color:var(--text-dim);
       font-size:.9rem;
       line-height:1.4;
     }
+
     .contact-box{
-      background:#ffffff;
+      background:var(--panel-light);
       color:var(--text-dark);
       border-radius:var(--radius-lg);
-      border:1px solid rgba(0,0,0,.05);
-      box-shadow:0 30px 60px rgba(0,0,0,.14);
+      border:1px solid var(--panel-light-border);
+      box-shadow:var(--panel-light-shadow);
       padding:2rem;
     }
     .contact-box h4{
       font-size:1rem;
       font-weight:600;
       margin-bottom:1rem;
+      font-family:'DM Sans',system-ui,sans-serif;
     }
     .contact-row{
       margin-bottom:.75rem;
@@ -632,15 +679,17 @@
       text-transform:uppercase;
       letter-spacing:.05em;
       margin-bottom:.25rem;
+      font-family:'DM Sans',system-ui,sans-serif;
     }
 
     /* ===== FOOTER ===== */
     footer {
-      background:var(--bg-deep);
-      border-top:1px solid rgba(255,255,255,.07);
-      color:rgba(255,255,255,.6);
+      background:rgba(26,47,40,.6);
+      border-top:1px solid rgba(255,255,255,.12);
+      color:rgba(255,255,255,.75);
       font-size:.8rem;
       padding:3rem 1.5rem 4rem;
+      backdrop-filter: blur(16px);
     }
     .footer-inner{
       max-width:var(--max-width);
@@ -661,7 +710,7 @@
       color:var(--text-light);
     }
     .footer-brand p{
-      color:rgba(255,255,255,.6);
+      color:rgba(255,255,255,.75);
       font-size:.8rem;
       max-width:40ch;
     }
@@ -672,13 +721,14 @@
       font-size:.8rem;
       text-transform:uppercase;
       letter-spacing:.05em;
+      font-family:'DM Sans',system-ui,sans-serif;
     }
     .footer-links{
       display:grid;
       gap:.5rem;
     }
     .footer-links a{
-      color:rgba(255,255,255,.6);
+      color:rgba(255,255,255,.75);
       text-decoration:none;
       font-size:.8rem;
     }
@@ -686,13 +736,13 @@
       color:var(--text-light);
     }
 
-    /* utility */
+    /* utilities */
     .muted {
-      color: rgba(255,255,255,.6);
+      color: var(--text-dim);
       font-size: .9rem;
     }
     .muted-dark {
-      color: rgba(26,31,28,.7);
+      color: var(--text-dark-dim);
     }
     .section-head {
       max-width: 40ch;
@@ -704,15 +754,13 @@
       font-size: .95rem;
       max-width: 60ch;
       color: inherit;
-      opacity: .8;
+      opacity: .9;
       line-height: 1.5;
+      font-family:'DM Sans',system-ui,sans-serif;
     }
-
-    /* spacing nits */
     .stack-sm{margin-top:1rem}
     .stack-md{margin-top:2rem}
     .stack-lg{margin-top:3rem}
-
   </style>
 </head>
 
@@ -721,7 +769,7 @@
   <header>
     <div class="nav-shell">
       <div class="brand">
-        <span class="title">EcoConnect Initiative</span>
+        <span class="title">The EcoConect Initiative</span>
         <span class="tag">Empowering communities for a greener future</span>
       </div>
 
@@ -742,13 +790,13 @@
     </div>
   </header>
 
-  <!-- HERO / INTRO -->
+  <!-- HERO -->
   <section class="section-dark" id="hero">
     <div class="wrapper hero">
       <div>
         <div class="eyebrow">Community-led • Data-driven • Youth-powered</div>
         <h1>Local action, real data, and youth leadership for healthier, climate‑resilient communities.</h1>
-        <p class="hero-copy">EcoConnect equips underserved communities with environmental education, real-time reporting tools, youth Eco‑Ambassadors, and a live dashboard that highlights pollution hotspots, waste issues, and climate risks. The goal is simple: help residents protect their environment, their health, and their future.</p>
+        <p class="hero-copy">The EcoConect Initiative equips underserved communities with environmental education, real-time reporting tools, youth Eco‑Ambassadors, and a live dashboard that highlights pollution hotspots, unmanaged waste, and climate risks. The goal is simple: help residents protect their environment, their health, and their future.</p>
 
         <div class="hero-cta-row">
           <button class="btn-primary" onclick="document.getElementById('get-involved').scrollIntoView({behavior:'smooth'});">Join / Volunteer</button>
@@ -757,10 +805,9 @@
       </div>
 
       <div class="hero-visual">
-        <!-- mockup card -->
+        <!-- mockup card (mobile app) -->
         <div class="hero-card">
-          <!-- Mobile app mockup screenshot -->
-          <img src="EcoConnect Display.png" alt="EcoConnect mobile app mockup showing education, reporting, challenges and community features" class="app-mock" />
+          <img src="images/EcoConnect_Display.png" alt="EcoConect mobile app mockup showing education, reporting, challenges and community features" class="app-mock" />
           <h3>Your community, your data</h3>
           <p>Residents report issues like blocked drainage or unmanaged waste. The app turns that into structured data and guidance.</p>
         </div>
@@ -772,14 +819,14 @@
   <section class="section-alt" id="about">
     <div class="wrapper two-col">
       <div>
-        <h2 class="section-head">What is EcoConnect?</h2>
-        <p class="section-intro">EcoConnect is a youth-led platform that blends technology, education, and on‑the‑ground mobilisation. Through the EcoConnect app, residents can access learning materials, report environmental risks, and get practical guidance. Youth Eco‑Ambassadors turn that insight into action — engaging households, traders, and local leaders.</p>
+        <h2 class="section-head">What is The EcoConect Initiative?</h2>
+        <p class="section-intro">EcoConect is a youth-led platform that blends technology, education, and on‑the‑ground mobilisation. Through the EcoConect app, residents can access learning materials, report environmental risks, and get practical guidance. Youth Eco‑Ambassadors turn that insight into action — engaging households, traders, and local leaders.</p>
 
         <div class="stack-md card-panel">
           <ul class="list-check">
-            <li><span class="check-icon"></span><span>Community reporting with photos and location tags (blocked drains, waste, flooding risks).</span></li>
+            <li><span class="check-icon"></span><span>Community reporting with photos and location tags (blocked drains, waste piles, flooding risks).</span></li>
             <li><span class="check-icon"></span><span>Easy learning modules on climate, sanitation, flooding, and health.</span></li>
-            <li><span class="check-icon"></span><span>Youth Eco‑Ambassadors who mobilize residents and push for real change.</span></li>
+            <li><span class="check-icon"></span><span>Youth Eco‑Ambassadors who mobilise residents and push for real change.</span></li>
             <li><span class="check-icon"></span><span>A live dashboard that helps communities and decision‑makers see real trends.</span></li>
           </ul>
         </div>
@@ -787,39 +834,39 @@
 
       <div id="problem">
         <h2 class="section-head">The problem we are solving</h2>
-        <p class="section-intro">In underserved, climate‑vulnerable communities, waste mismanagement, clogged drains, polluted markets, and a lack of environmental education create daily health risks. People are blamed for ‘poor hygiene,’ but they’re rarely given the tools, knowledge, or data to act. Cleanups happen — then everything goes back to the way it was. There is no feedback loop, no ownership, no data.</p>
+        <p class="section-intro">In underserved, climate‑vulnerable communities, waste mismanagement, clogged drains, polluted markets, and a lack of environmental education create daily health risks. People are blamed for “poor hygiene,” but they’re rarely given the tools, knowledge, or data to act. Cleanups happen — then everything goes back to the way it was. There is no feedback loop, no ownership, no data.</p>
 
         <div class="stack-md card-panel">
-          <p style="margin:0;font-size:.9rem;color:rgba(255,255,255,.75);">EcoConnect replaces one‑off sensitisation with continuous reporting, education and follow‑up. We help communities see and track their own progress — and hold systems accountable.</p>
+          <p style="margin:0;font-size:.9rem;color:var(--text-dim);">EcoConect replaces one‑off sensitisation with continuous reporting, education and follow‑up. We help communities see and track their own progress — and hold systems accountable.</p>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- HOW WE WORK / SOLUTION / FEATURES -->
+  <!-- HOW WE WORK / SOLUTION -->
   <section class="section-dark" id="solution">
     <div class="wrapper">
-      <h2 class="section-head">How EcoConnect works</h2>
-      <p class="section-intro">We unite digital tools with human leadership. The technology gathers and visualises the problems. Trained Eco‑Ambassadors (local youth) organise cleanups, speak with traders and households, promote safer waste practices, and advocate for structural fixes with local authorities. Technology + people = behaviour change that lasts.</p>
+      <h2 class="section-head">How EcoConect works</h2>
+      <p class="section-intro">We unite digital tools with human leadership. The technology gathers and visualises the problems. Trained Eco‑Ambassadors (local youth) organise cleanups, talk with traders and households, promote safer waste practices, and advocate for structural fixes with local authorities. Technology + people = behaviour change that lasts.</p>
 
       <div class="feature-grid stack-md">
         <div class="feature-tile">
-          <img src="EcoConnect Dashboard Design Prototype.png" alt="Dashboard mockup highlighting active reports, resolution rates, and hotspot map" class="mini-thumb" />
+          <img src="images/EcoConnect_Dashboard_Design_Prototype.png" alt="Dashboard mockup highlighting active reports, resolution rates, and hotspot map" class="mini-thumb" />
           <div class="feature-head">Live Community Dashboard</div>
           <div class="feature-desc">Tracks reports like blocked drainage, uncontrolled dumping, and recurring risk hotspots. Helps leaders target action, not guess.</div>
         </div>
 
-        <div class="feature-tile" style="background:radial-gradient(circle at 10% 10%,rgba(95,191,106,.18)0%,rgba(0,0,0,0)70%),rgba(19,45,36,.55);">
+        <div class="feature-tile" style="background:radial-gradient(circle at 10% 10%,rgba(95,191,106,.22)0%,rgba(0,0,0,0)70%),var(--panel-glass-dark);">
           <div class="feature-head">Eco‑Ambassadors</div>
           <div class="feature-desc">We train youth (18–30) from within the community — especially women and excluded groups — to teach, mobilise, and monitor. They become trusted local climate leaders.</div>
         </div>
 
-        <div class="feature-tile" style="background:radial-gradient(circle at 10% 10%,rgba(169,92,66,.18)0%,rgba(0,0,0,0)70%),rgba(19,45,36,.55);">
+        <div class="feature-tile" style="background:radial-gradient(circle at 10% 10%,rgba(169,92,66,.22)0%,rgba(0,0,0,0)70%),var(--panel-glass-dark);">
           <div class="feature-head">Education & Behaviour Change</div>
           <div class="feature-desc">Short, visual lessons inside the app and in-person sessions in markets and compounds. We talk about health, flooding, waste, and everyday prevention — not abstract climate theory.</div>
         </div>
 
-        <div class="feature-tile" style="background:radial-gradient(circle at 10% 10%,rgba(154,107,58,.18)0%,rgba(0,0,0,0)70%),rgba(19,45,36,.55);">
+        <div class="feature-tile" style="background:radial-gradient(circle at 10% 10%,rgba(154,107,58,.22)0%,rgba(0,0,0,0)70%),var(--panel-glass-dark);">
           <div class="feature-head">Evidence for Policy</div>
           <div class="feature-desc">The dashboard generates reliable, community‑level environmental data for local governments and agencies. Instead of vague complaints, they get clear, geo‑tagged problem maps.</div>
         </div>
@@ -864,7 +911,7 @@
         <!-- Project 1 -->
         <div class="project-card">
           <div class="img-wrap">
-            <img src="market_cleanup1a.jpg" alt="EcoConnect team with community members during waste cleanup and sensitisation" />
+            <img src="images/market_cleanup1a.jpg" alt="EcoConect team with community members during waste cleanup and sensitisation" />
           </div>
           <div class="body">
             <h4>Cleanup Drive & Waste Sensitisation – Ketu Market</h4>
@@ -875,7 +922,7 @@
         <!-- Project 2 -->
         <div class="project-card">
           <div class="img-wrap">
-            <img src="market_cleanup1b.jpg" alt="Community members sweeping drains and clearing solid waste" />
+            <img src="images/market_cleanup1b.jpg" alt="Community members sweeping drains and clearing solid waste" />
           </div>
           <div class="body">
             <h4>Hands-on Behaviour Change</h4>
@@ -886,7 +933,7 @@
         <!-- Project 3 -->
         <div class="project-card">
           <div class="img-wrap">
-            <img src="market_cleanup1c.jpg" alt="Woman sweeping and collecting mixed waste from the market floor" />
+            <img src="images/market_cleanup1c.jpg" alt="Woman sweeping and collecting mixed waste from the market floor" />
           </div>
           <div class="body">
             <h4>Health & Safety Education</h4>
@@ -895,11 +942,44 @@
         </div>
       </div>
 
-      <div class="muted stack-md" style="font-size:.8rem;max-width:60ch;">More field photos (market_cleanup2a / 2b / 2c / 2d, incl. Ikeja market underbridge) will appear here as a second gallery row, showing replication in new locations.</div>
+      <div class="stack-md projects-grid">
+        <!-- Project 4 from second market round -->
+        <div class="project-card">
+          <div class="img-wrap">
+            <img src="images/market_cleanup2a.jfif" alt="EcoConect volunteers holding climate awareness posters in local languages" />
+          </div>
+          <div class="body">
+            <h4>Climate Conversations in Local Language</h4>
+            <p>Our team meets traders where they are — literally and culturally — translating climate and flooding risk into everyday language that actually lands.</p>
+          </div>
+        </div>
+
+        <div class="project-card">
+          <div class="img-wrap">
+            <img src="images/market_cleanup2b.jfif" alt="Volunteers speaking directly with street and stall traders about waste and drainage" />
+          </div>
+          <div class="body">
+            <h4>One-on-One Market Outreach</h4>
+            <p>We sit with street vendors and small stall owners to talk through waste practices, safer disposal, and why blocked drains hurt everyone — customers included.</p>
+          </div>
+        </div>
+
+        <div class="project-card">
+          <div class="img-wrap">
+            <img src="images/market_cleanup2c.jfif" alt="Older woman sweeping roadside cooking area to reduce smoke and waste build-up" />
+          </div>
+          <div class="body">
+            <h4>Community Ownership</h4>
+            <p>Behaviour change continues after the session. Residents organise themselves to keep shared spaces clean, safer, and less flood-prone.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="muted stack-md" style="font-size:.8rem;max-width:60ch;">These outreach photos (including images/market_cleanup2d.jfif and others) also capture our work under bridges and informal trading spaces where no formal waste service exists.</div>
     </div>
   </section>
 
-  <!-- GALLERY / IMPACT VISUALS -->
+  <!-- GALLERY / VISUAL STORY -->
   <section class="section-alt" id="gallery">
     <div class="wrapper">
       <h2 class="section-head">Field gallery</h2>
@@ -908,7 +988,7 @@
       <div class="projects-grid">
         <div class="project-card">
           <div class="img-wrap">
-            <img src="market_cleanup1d.jpg" alt="EcoConnect volunteer team with brooms, talking with local women traders" />
+            <img src="images/market_cleanup1d.jpg" alt="EcoConect volunteer team with brooms, talking with local women traders" />
           </div>
           <div class="body">
             <h4>Community Ownership</h4>
@@ -918,7 +998,7 @@
 
         <div class="project-card">
           <div class="img-wrap">
-            <img src="market_cleanup1e.jpg" alt="Woman clearing drainage channel near informal stalls to reduce flooding" />
+            <img src="images/market_cleanup1e.jpg" alt="Woman clearing drainage channel near informal stalls to reduce flooding" />
           </div>
           <div class="body">
             <h4>Drainage Clearing</h4>
@@ -928,7 +1008,7 @@
 
         <div class="project-card">
           <div class="img-wrap">
-            <img src="EcoConnect Dashboard Design Prototype.png" alt="Risk alert dashboard view highlighting repeat dumping hotspots" />
+            <img src="images/EcoConnect_Dashboard_Design_Prototype.png" alt="Risk alert dashboard view highlighting repeat dumping hotspots" />
           </div>
           <div class="body">
             <h4>Data for Action</h4>
@@ -943,24 +1023,27 @@
   <section class="section-soft" id="team">
     <div class="wrapper">
       <h2 class="section-head">Our team</h2>
-      <p class="section-intro">EcoConnect is built and led by young Nigerians with experience in public health, data, community organising, and sustainability education. We are from the same communities we serve — and we are designing for impact, not just awareness.</p>
+      <p class="section-intro">The EcoConect Initiative is built and led by young Nigerians with experience in public health, data, community organising, and sustainability education. We are from the same communities we serve — and we are designing for impact, not just awareness.</p>
 
       <div class="team-grid">
         <div class="team-card">
-          <div class="team-role">Project Lead</div>
+          <img class="team-photo" src="images/Mofiyinfoluwa_Odeyemi.jfif" alt="Portrait of Mofiyinfoluwa Odeyemi" />
           <div class="team-name">Mofiyinfoluwa Odeyemi</div>
-          <p class="team-desc">Environmental, Health & Safety officer with experience leading grassroots campaigns and community partnerships. Oversees strategy, funding coordination, and stakeholder engagement to keep EcoConnect community-owned.</p>
+          <div class="team-role">Project Lead</div>
+          <p class="team-desc">Environmental, Health & Safety officer with experience leading grassroots campaigns and community partnerships. Oversees strategy, funding coordination, and stakeholder engagement to keep EcoConect community-owned.</p>
         </div>
 
         <div class="team-card">
-          <div class="team-role">Head of Programs</div>
+          <img class="team-photo" src="images/Victory_Oluwatunmise.jfif" alt="Portrait of Oluwatunmise Victory" />
           <div class="team-name">Oluwatunmise Victory</div>
+          <div class="team-role">Head of Programs</div>
           <p class="team-desc">Public Health specialist who coordinates Eco‑Ambassador training, outreach sessions, and volunteer mobilisation. Ensures every workshop is practical, respectful, and culturally grounded. CIPM certified.</p>
         </div>
 
         <div class="team-card">
-          <div class="team-role">Monitoring & Evaluation Lead</div>
+          <img class="team-photo" src="images/Judah_Moyin-Jesu.jfif" alt="Portrait of Judah Moyin‑Jesu" />
           <div class="team-name">Judah Moyin‑Jesu</div>
+          <div class="team-role">Monitoring & Evaluation Lead</div>
           <p class="team-desc">GIS analyst with 3+ years in impact tracking and geospatial mapping. Designs indicators, manages data dashboards, and turns field reports into measurable environmental outcomes.</p>
         </div>
       </div>
@@ -969,7 +1052,7 @@
         <div class="blog-eyebrow">Coming soon</div>
         <h3>The Eco Blog</h3>
         <p>The environment affects the air we breathe, the food we eat, and the safety of our streets. Our blog will break down sustainability, health, and climate resilience in simple language — so everyone can act, not just experts.</p>
-        <p class="muted-dark" style="margin:0;font-size:.8rem;">Stay tuned for stories from markets, data snapshots, and practical tips to protect your home and your community.</p>
+        <p class="muted-dark" style="margin:0;font-size:.8rem;">Expect stories from markets, data snapshots, and practical tips to protect your home and your community.</p>
       </div>
     </div>
   </section>
@@ -1000,7 +1083,7 @@
           <div class="label">Location</div>
           <div>Lagos, Nigeria • Starting in Ketu</div>
         </div>
-        <div class="contact-row" style="font-size:.8rem;color:rgba(26,31,28,.7);max-width:40ch;">
+        <div class="contact-row" style="font-size:.8rem;color:var(--text-dark-dim);max-width:40ch;">
           We welcome partnerships with community leaders, local governments, health educators, and climate-aligned organisations.
         </div>
       </div>
@@ -1011,7 +1094,7 @@
   <footer>
     <div class="footer-inner">
       <div class="footer-brand">
-        <div class="title">EcoConnect Initiative</div>
+        <div class="title">The EcoConect Initiative</div>
         <p>Tech + youth mobilisation + community ownership. We turn environmental reporting and education into real action and measurable change.</p>
       </div>
 
@@ -1047,7 +1130,7 @@
       nav.classList.toggle('open');
     });
 
-    // close nav after clicking link on mobile
+    // close nav when selecting a link (mobile UX)
     nav.querySelectorAll('a').forEach(link => {
       link.addEventListener('click', () => {
         nav.classList.remove('open');
